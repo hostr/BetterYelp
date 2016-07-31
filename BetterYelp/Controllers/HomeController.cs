@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BetterYelp.Business.Directors;
+using BetterYelp.Business.Enums;
+using BetterYelp.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +11,12 @@ namespace BetterYelp.Controllers
 {
     public class HomeController : Controller
     {
+        private AuthDirector _authDirector;
+
         public ActionResult Index()
         {
+
+
             return View();
         }
 
