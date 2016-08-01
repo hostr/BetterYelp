@@ -14,5 +14,8 @@
     <Setting Name="TokenSecret" Type="System.String" Scope="Application">
       <Value Profile="(Default)">VDIQtpZe15l1XGguYzre6evfX4I</Value>
     </Setting>
+    <Setting Name="ApiUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">api.yelp.com/v2/</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
