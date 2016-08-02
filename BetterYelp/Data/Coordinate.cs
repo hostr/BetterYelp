@@ -2,8 +2,8 @@
 {
     public class Coordinate
     {
-        public int latitude { get; set; }
+        public decimal latitude { get; set; }
 
-        public int longitude { get; set; }
+        public decimal longitude { get; set; }
     }
 }

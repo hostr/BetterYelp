@@ -25,46 +25,19 @@ namespace BetterYelp.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("JpAPcsGTrqhgWGIvmPceTg")]
-        public string YelpConsumerKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("yl_I2og2eexPuTqH15Tdrw")]
+        public string AppID {
             get {
-                return ((string)(this["YelpConsumerKey"]));
+                return ((string)(this["AppID"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SEesgQEc6T2LMDKGehntMZ6NcEk")]
-        public string YelpConsumerSecret {
+        [global::System.Configuration.DefaultSettingValueAttribute("2mfgv3QadHMfwGhq2wqtqhFG5rukNadKTSaAppRwRJb3Tu5zPTBJC0YyQJFenzfe")]
+        public string AppSecret {
             get {
-                return ((string)(this["YelpConsumerSecret"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("H1kbkl3NdJQknRsS876e312fZntt888q")]
-        public string Token {
-            get {
-                return ((string)(this["Token"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("VDIQtpZe15l1XGguYzre6evfX4I")]
-        public string TokenSecret {
-            get {
-                return ((string)(this["TokenSecret"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("api.yelp.com/v2/")]
-        public string ApiUrl {
-            get {
-                return ((string)(this["ApiUrl"]));
+                return ((string)(this["AppSecret"]));
             }
         }
     }

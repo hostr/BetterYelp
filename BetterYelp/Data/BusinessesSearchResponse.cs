@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BetterYelp.Data
 {
-    public class SearchResponse
+    public class BusinessesSearchResponse
     {
         public int total { get; set; }
 
