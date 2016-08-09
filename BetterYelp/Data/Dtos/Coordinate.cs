@@ -1,4 +1,4 @@
-﻿namespace BetterYelp.Data
+﻿namespace BetterYelp.Data.Dtos
 {
     public class Coordinate
     {

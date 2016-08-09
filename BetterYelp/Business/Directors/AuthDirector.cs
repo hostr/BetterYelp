@@ -1,4 +1,5 @@
 using BetterYelp.Business.Enums;
+using BetterYelp.Data;
 using BetterYelp.Security;
 using RestSharp.Authenticators;
 using System;
@@ -12,16 +13,25 @@ namespace BetterYelp.Business.Directors
 {
     public class AuthDirector
     {
-        private ConfigType _type;
+        private RequestDirector _requestDirector;
+        private YelpConfig _config;
 
-        private string ConsumerKey { get; set; }
-        public string ConsumerSecret { get; set; }
-        public string Token { get; set; }
-        public string TokenSecret { get; set; }
-
-        public AuthDirector(ConfigType type)
+        public AuthDirector(YelpConfig config)
         {
-            this._type = type;
+            if (String.IsNullOrWhiteSpace(config.AppId) ||
+                String.IsNullOrWhiteSpace(config.AppSecret))
+            {
+                throw new InvalidOperationException("No Oauth info available. Please enter your Yelp app credentials in web.config.");
+            }
+
+            _config = config;
+        }
+
+        public void Authenticate()
+        {
+            _requestDirector = new RequestDirector(_config);
+
+            var token = _requestDirector.MakeRequest();
         }
 
 

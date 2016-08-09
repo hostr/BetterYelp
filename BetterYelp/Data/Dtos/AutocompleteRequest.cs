@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Data
+namespace BetterYelp.Data.Dtos
 {
     public class AutocompleteRequest
     {

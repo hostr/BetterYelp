@@ -207,17 +207,18 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Data\AuthRequest.cs" />
-    <Compile Include="Data\AuthResponse.cs" />
-    <Compile Include="Data\AutocompleteRequest.cs" />
-    <Compile Include="Data\Business.cs" />
-    <Compile Include="Data\Category.cs" />
-    <Compile Include="Data\Coordinate.cs" />
-    <Compile Include="Data\Deal.cs" />
-    <Compile Include="Data\Location.cs" />
-    <Compile Include="Data\DealOptions.cs" />
-    <Compile Include="Data\BusinessesSearchRequest.cs" />
-    <Compile Include="Data\BusinessesSearchResponse.cs" />
+    <Compile Include="Data\Dtos\AuthRequest.cs" />
+    <Compile Include="Data\Dtos\AuthResponse.cs" />
+    <Compile Include="Data\Dtos\AutocompleteRequest.cs" />
+    <Compile Include="Data\Dtos\Business.cs" />
+    <Compile Include="Data\Dtos\Category.cs" />
+    <Compile Include="Data\Dtos\Coordinate.cs" />
+    <Compile Include="Data\Dtos\Deal.cs" />
+    <Compile Include="Data\Dtos\Location.cs" />
+    <Compile Include="Data\Dtos\DealOptions.cs" />
+    <Compile Include="Data\Dtos\BusinessesSearchRequest.cs" />
+    <Compile Include="Data\Dtos\BusinessesSearchResponse.cs" />
+    <Compile Include="Data\YelpConfig.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,6 +236,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Security\OAuthManager.cs" />
+    <Compile Include="ServiceConnectors\YelpClient.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

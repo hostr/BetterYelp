@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BetterYelp.Data
+namespace BetterYelp.Data.Dtos
 {
     public class Deal
     {
