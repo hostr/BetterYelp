@@ -21,6 +21,7 @@ namespace BetterYelp.Controllers
             yelpClient = new YelpClient();
 
             ViewBag.Token = yelpClient.GetToken();
+            var businesses = yelpClient.SearchBusinesses("burger", "55343");
 
             return View();
         }

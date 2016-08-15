@@ -1,5 +1,6 @@
 ﻿using BetterYelp.Business.Directors;
 using BetterYelp.Data;
+using BetterYelp.Data.Dtos;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -19,6 +20,7 @@ namespace BetterYelp.ServiceConnectors
         private const string baseUrl = "https://api.yelp.com";
 
         private const string authEndpoint = "/oauth2/token";
+        private const string businessSearchEndpiont = "/v3/businesses/search";
 
         private YelpConfig config = null;
 
@@ -76,6 +78,26 @@ namespace BetterYelp.ServiceConnectors
             // Add error handling if token is null
             token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseJson)["access_token"].ToString();
             lastRefreshed = DateTime.Now;
+        }
+
+        public BusinessesSearchResponse SearchBusinesses(string term, string location)
+        {
+            var restClient = new RestClient(baseUrl + businessSearchEndpiont);
+
+            RestRequest request = new RestRequest()
+            {
+                Method = Method.GET
+            };
+
+            request.AddHeader("Authorization", "Bearer " + token);
+
+            request.AddParameter("term", term);
+            request.AddParameter("location", location);
+
+            var response = restClient.Execute(request);
+            var responseJson = response.Content;
+
+            return JsonConvert.DeserializeObject<BusinessesSearchResponse>(responseJson);
         }
     }
 }

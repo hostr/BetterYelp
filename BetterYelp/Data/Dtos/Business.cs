@@ -26,7 +26,7 @@ namespace BetterYelp.Data.Dtos
 
         public List<Category> categories { get; set; }
 
-        public List<Coordinate> coordinates { get; set; }
+        public Coordinate coordinates { get; set; }
 
         public Location location { get; set; }
     }
