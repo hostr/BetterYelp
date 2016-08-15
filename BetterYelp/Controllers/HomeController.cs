@@ -1,5 +1,6 @@
 ﻿using BetterYelp.Business.Directors;
 using BetterYelp.Business.Enums;
+using BetterYelp.Data;
 using BetterYelp.Security;
 using BetterYelp.ServiceConnectors;
 using System;
@@ -13,14 +14,13 @@ namespace BetterYelp.Controllers
 {
     public class HomeController : Controller
     {
-        private AuthDirector _authDirector;
+        private YelpClient yelpClient;
 
         public ActionResult Index()
         {
-            
-            var appId = Properties.Settings.Default.AppID;
-            var appSecret = Properties.Settings.Default.AppSecret;
-            YelpClient client = new YelpClient(appId, appSecret);
+            yelpClient = new YelpClient();
+
+            ViewBag.Token = yelpClient.GetToken();
 
             return View();
         }
