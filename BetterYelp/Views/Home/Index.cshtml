@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BetterYelp.Data.Dtos.BusinessesSearchResponse
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -10,4 +12,10 @@
 
 <div class="row">
     <p>Token: @ViewBag.Token</p>
+</div>
+
+<div class="row">
+    <h3>Total business found: @Html.DisplayFor(m => m.total)</h3>
+
+    @Html.DisplayFor(m => m.businesses)
 </div>
