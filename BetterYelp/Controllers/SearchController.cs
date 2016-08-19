@@ -12,10 +12,12 @@ namespace BetterYelp.Controllers
     public class SearchController : Controller
     {
         private YelpClient _yelpClient;
+        private ISearchRepository _searchRepository;
 
-        public SearchController()
+        public SearchController(ISearchRepository searchRepository)
         {
             _yelpClient = new YelpClient();
+            _searchRepository = new SearchRepository(new SearchContext());
         }
 
         // GET: Search
