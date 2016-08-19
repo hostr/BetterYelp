@@ -18,6 +18,7 @@ namespace BetterYelp.Controllers
 
         public ActionResult Index()
         {
+
             yelpClient = new YelpClient();
 
             ViewBag.Token = yelpClient.GetToken();
