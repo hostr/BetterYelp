@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Models
+namespace BetterYelp.Models.Entities
 {
-    public class Search
+    public class EntityBase
     {
         public int Id { get; set; }
-        public string Term { get; set; }
-        public string Location { get; set; }
     }
 }
