@@ -227,13 +227,15 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Entities\EntityBase.cs" />
     <Compile Include="Models\Business.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Entities\Search.cs" />
+    <Compile Include="Models\Repositories\ISearchRepository.cs" />
+    <Compile Include="Models\Repositories\Repository.cs" />
     <Compile Include="Models\Repositories\IRepository.cs" />
+    <Compile Include="Models\Repositories\SearchRepository.cs" />
     <Compile Include="Models\SearchContext.cs" />
     <Compile Include="Models\SearchRepository.cs" />
     <Compile Include="Models\SearchRequestModel.cs" />
@@ -315,6 +317,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\UnitOfWork\" />
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\Search\EditorTemplates\" />
   </ItemGroup>

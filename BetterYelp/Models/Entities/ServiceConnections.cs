@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BetterYelp.Models.Entities
 {
-    public class ServiceConnections : EntityBase
+    public class ServiceConnections
     {
+        public int Id { get; set; }
         public string ServiceName { get; set; }
         public string Token { get; set; }
         public DateTime LastUpdated { get; set; }
