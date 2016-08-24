@@ -1,5 +1,7 @@
 ﻿using BetterYelp.Business.Directors;
 using BetterYelp.Models;
+using BetterYelp.Models.Repositories;
+using BetterYelp.Models.UnitOfWork;
 using BetterYelp.ServiceConnectors;
 using System;
 using System.Collections.Generic;
@@ -12,12 +14,13 @@ namespace BetterYelp.Controllers
     public class SearchController : Controller
     {
         private YelpClient _yelpClient;
-        private ISearchRepository _searchRepository;
+        private IUnitOfWork _unitOfWork;
 
-        public SearchController(ISearchRepository searchRepository)
+        public SearchController(ISearchRepository searchRepository,
+            IUnitOfWork unitOfWork)
         {
             _yelpClient = new YelpClient();
-            _searchRepository = new SearchRepository(new SearchContext());
+            _unitOfWork = unitOfWork;
         }
 
         // GET: Search

@@ -10,14 +10,15 @@ namespace BetterYelp.Models.Repositories
 {
     public class SearchRepository : Repository<Search>, ISearchRepository
     {
-        public SearchContext SearchContext {
+        public SearchContext SearchContext
+        {
             get
             {
                 return Context as SearchContext;
             }
         }
 
-        public SearchRepository(SearchContext context) 
+        public SearchRepository(SearchContext context)
             : base(context)
         {
         }
