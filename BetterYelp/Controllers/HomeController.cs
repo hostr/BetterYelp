@@ -1,6 +1,7 @@
 ﻿using BetterYelp.Business.Directors;
 using BetterYelp.Business.Enums;
 using BetterYelp.Data;
+using BetterYelp.Models.UnitOfWork;
 using BetterYelp.Security;
 using BetterYelp.ServiceConnectors;
 using System;
@@ -15,11 +16,11 @@ namespace BetterYelp.Controllers
     public class HomeController : Controller
     {
         private YelpClient yelpClient;
+        private IUnitOfWork _unitOfWork;
 
         public ActionResult Index()
         {
-
-            yelpClient = new YelpClient();
+            yelpClient = new YelpClient(_unitOfWork);
 
             ViewBag.Token = yelpClient.GetToken();
             var businesses = yelpClient.SearchBusinesses("burger", "55343");

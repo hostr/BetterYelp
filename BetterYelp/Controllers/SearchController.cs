@@ -16,11 +16,10 @@ namespace BetterYelp.Controllers
         private YelpClient _yelpClient;
         private IUnitOfWork _unitOfWork;
 
-        public SearchController(ISearchRepository searchRepository,
-            IUnitOfWork unitOfWork)
+        public SearchController()
         {
-            _yelpClient = new YelpClient();
-            _unitOfWork = unitOfWork;
+            _yelpClient = new YelpClient(new UnitOfWork());
+            _unitOfWork = new UnitOfWork();
         }
 
         // GET: Search

@@ -1,6 +1,7 @@
 namespace BetterYelp.Migrations
 {
     using Models;
+    using Models.Entities;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
