@@ -7,18 +7,18 @@ using BetterYelp.Models.Repositories;
 
 namespace BetterYelp.Models.UnitOfWork
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly SearchContext _context;
 
-        public ISearchRepository Searches { get; }
-        public IServiceConnectionsRepository ServiceConnections { get; }
+        public ISearchRepository Searches { get; private set; }
+        public IServiceConnectionsRepository ServiceConnections { get; private set; }
 
-        public UnitOfWork( )
+        public UnitOfWork(SearchContext context)
         {
-            _context = new SearchContext();
-            Searches = new SearchRepository(_context);
-            ServiceConnections = new ServiceConnectionsRepository(_context);
+            _context = context;
+            Searches = new SearchRepository(context);
+            ServiceConnections = new ServiceConnectionsRepository(context);
         }
 
         public int Save()
@@ -26,9 +26,24 @@ namespace BetterYelp.Models.UnitOfWork
             return _context.SaveChanges();
         }
 
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _context.Dispose();
+                }
+            }
+            this.disposed = true;
+        }
+
         public void Dispose()
         {
-            _context.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }

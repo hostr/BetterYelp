@@ -244,3 +244,4 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/BetterYelp/Models/ViewModels/SearchViewModel.cs

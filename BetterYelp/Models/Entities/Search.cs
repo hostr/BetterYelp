@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BetterYelp.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,14 @@ namespace BetterYelp.Models.Entities
         public int Id { get; set; }
         public string Term { get; set; }
         public string Location { get; set; }
+
+        public static Search DtoToEntity(SearchViewModel vm)
+        {
+            return new Search
+            {
+                Term = vm.Term,
+                Location = vm.Location                
+            };
+        }
     }
 }
