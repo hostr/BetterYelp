@@ -14,7 +14,8 @@ namespace BetterYelp.ServiceConnectors
 {
     public class YelpClient
     {
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
+        //private readonly IApiRequest _api;
         private YelpSettings _settings;
 
         private const double TokenRefreshDurationInMinutes = 30;

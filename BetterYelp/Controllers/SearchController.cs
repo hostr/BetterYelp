@@ -15,6 +15,7 @@ namespace BetterYelp.Controllers
     public class SearchController : Controller
     {
         private SearchService _searchService;
+        private YelpClient _yelpClient;
 
         public SearchController(SearchService searchService)
         {
