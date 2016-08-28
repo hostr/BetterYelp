@@ -1,4 +1,5 @@
-﻿using BetterYelp.Models;
+﻿using BetterYelp.Data;
+using BetterYelp.Models;
 using BetterYelp.Models.Entities;
 using BetterYelp.Models.UnitOfWork;
 using BetterYelp.Models.ViewModels;
@@ -17,12 +18,12 @@ namespace BetterYelp.Services
         private readonly SearchContext _context;
         private readonly YelpClient _yelpClient;
 
-        public SearchService(IUnitOfWork unitOfWork,
-            YelpClient yelpClient)
+        private readonly YelpSettings _settings;
+
+        public SearchService(IUnitOfWork unitOfWork)
         {
             _context = new SearchContext();
             _unitOfWork = unitOfWork;
-            _yelpClient = yelpClient;
         }
 
         public object SearchYelp(SearchViewModel vm)

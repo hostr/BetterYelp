@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BetterYelp.Data
 {
-    public class YelpConfig
+    public class YelpSettings
     {
         public string AppId { get; set; }
 

@@ -11,9 +11,9 @@ namespace BetterYelp.Business.Directors
 {
     public class YelpDirector
     {
-        private YelpConfig _config;
+        private YelpSettings _config;
 
-        public YelpDirector(YelpConfig config)
+        public YelpDirector(YelpSettings config)
         {
             _config = config;
         }                

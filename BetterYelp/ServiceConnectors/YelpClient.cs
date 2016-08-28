@@ -15,9 +15,7 @@ namespace BetterYelp.ServiceConnectors
     public class YelpClient
     {
         private IUnitOfWork _unitOfWork;
-
-        private static readonly string AppId = Properties.Settings.Default.AppID;
-        private static readonly string AppSecret = Properties.Settings.Default.AppSecret;
+        private YelpSettings _settings;
 
         private const double TokenRefreshDurationInMinutes = 30;
 
@@ -26,50 +24,54 @@ namespace BetterYelp.ServiceConnectors
         private const string authEndpoint = "/oauth2/token";
         private const string businessSearchEndpiont = "/v3/businesses/search";
 
-        private YelpConfig config = null;
-
         private string token;
         private DateTime lastRefreshed;
 
         public YelpClient(IUnitOfWork unitOfWork)
         {
-            config = new YelpConfig()
-            {
-                AppId = AppId,
-                AppSecret = AppSecret
-            };
-
             _unitOfWork = unitOfWork;
+            InitializeSettings();
+        }
+
+        private void InitializeSettings()
+        {
+            _settings = new YelpSettings();
+
+            _settings.AppId = Properties.Settings.Default.AppID;
+            _settings.AppSecret = Properties.Settings.Default.AppSecret;
         }
 
         public string GetToken()
         {
-            if (String.IsNullOrWhiteSpace(config.AppId) ||
-                String.IsNullOrWhiteSpace(config.AppSecret))
+            if (String.IsNullOrEmpty(_settings.AppId))
             {
-                throw new InvalidOperationException("No Oauth info available. Please enter your Yelp app credentials in web.config.");
+                throw new ArgumentException("Yelp App Id");
+            }
+
+            if (String.IsNullOrEmpty(_settings.AppSecret))
+            {
+                throw new ArgumentException("Yelp App Secret");
             }
 
             var entity = _unitOfWork.ServiceConnections.Find(m => m.ServiceName == "Yelp").FirstOrDefault();
-            token = entity.Token;
-            lastRefreshed = entity.LastUpdated;
 
-            var elapsedTime = new TimeSpan(DateTime.Now.Ticks - lastRefreshed.Ticks);
-            double delta = Math.Abs(elapsedTime.TotalMinutes);
+            var elapsedTime = new TimeSpan(DateTime.Now.Ticks - entity.LastUpdated.Ticks);
+            double deltaInMinutes = Math.Abs(elapsedTime.TotalMinutes);
 
-            if (delta < TokenRefreshDurationInMinutes 
-                && !String.IsNullOrWhiteSpace(token))
+            if (deltaInMinutes < TokenRefreshDurationInMinutes 
+                && !String.IsNullOrWhiteSpace(entity.Token))
             {
-                return token; 
+                return entity.Token; 
             }
             else
             {
-                AttemptRefreshToken(config, entity);
-                return token;
+                entity.Token = AttemptRefreshToken();
+                entity.LastUpdated = DateTime.Now;
+                return entity.Token;
             }                      
         }
 
-        private void AttemptRefreshToken(YelpConfig config, ServiceConnections entity)
+        private string AttemptRefreshToken()
         {
             var restClient = new RestClient(baseUrl + authEndpoint);
 
@@ -81,18 +83,21 @@ namespace BetterYelp.ServiceConnectors
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            request.AddParameter("client_id", config.AppId);
-            request.AddParameter("client_secret", config.AppSecret);
+            request.AddParameter("client_id", _settings.AppId);
+            request.AddParameter("client_secret", _settings.AppSecret);
             request.AddParameter("grant_type", "client_credentials");
 
             var response = restClient.Execute(request);
             var responseJson = response.Content;
 
-            // Add error handling if token is null
-            token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseJson)["access_token"].ToString();
-            entity.LastUpdated = DateTime.Now;
-            entity.Token = token;
-            _unitOfWork.Save();
+            var token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseJson)["access_token"].ToString();     
+            
+            if (token == null || string.IsNullOrWhiteSpace(token))
+            {
+                throw new Exception("yelp token");
+            }
+
+            return token;
         }
 
         public BusinessesSearchResponse SearchBusinesses(string term, string location)
@@ -109,10 +114,7 @@ namespace BetterYelp.ServiceConnectors
             request.AddParameter("term", term);
             request.AddParameter("location", location);
 
-            var response = restClient.Execute(request);
-            var responseJson = response.Content;
-
-            return JsonConvert.DeserializeObject<BusinessesSearchResponse>(responseJson);
+            return null;
         }
     }
 }
