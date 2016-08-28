@@ -210,6 +210,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Business\Directors\YelpDirector.cs" />
     <Compile Include="Business\Enums\ConfigType.cs" />
+    <Compile Include="Common\ILogger.cs" />
     <Compile Include="Common\Logger.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
