@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BetterYelp.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,7 @@ namespace BetterYelp
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             log4net.Config.XmlConfigurator.Configure();
+            SimpleInjectorInitializer.Initialize();
         }
     }
 }
