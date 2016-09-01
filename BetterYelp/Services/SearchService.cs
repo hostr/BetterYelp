@@ -6,6 +6,7 @@ using BetterYelp.Models.ViewModels;
 using BetterYelp.ServiceConnectors;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,14 +16,14 @@ namespace BetterYelp.Services
     public class SearchService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly SearchContext _context;
+        private readonly DbContext _context;
         private readonly YelpClient _yelpClient;
 
         private readonly YelpSettings _settings;
 
-        public SearchService(IUnitOfWork unitOfWork)
+        public SearchService(IUnitOfWork unitOfWork, DbContext context)
         {
-            _context = new SearchContext();
+            _context = context;
             _unitOfWork = unitOfWork;
         }
 

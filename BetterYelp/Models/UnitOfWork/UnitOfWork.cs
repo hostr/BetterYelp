@@ -4,21 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BetterYelp.Models.Repositories;
+using System.Data.Entity;
 
 namespace BetterYelp.Models.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
-        private readonly SearchContext _context;
+        private readonly DbContext _context;
 
         public ISearchRepository Searches { get; private set; }
         public IServiceConnectionsRepository ServiceConnections { get; private set; }
 
-        public UnitOfWork(SearchContext context)
+        public UnitOfWork(DbContext context, ISearchRepository searchRepository, IServiceConnectionsRepository serviceConnectionsRepository)
         {
             _context = context;
-            Searches = new SearchRepository(context);
-            ServiceConnections = new ServiceConnectionsRepository(context);
+            Searches = searchRepository;
+            ServiceConnections = serviceConnectionsRepository;
         }
 
         public int Save()

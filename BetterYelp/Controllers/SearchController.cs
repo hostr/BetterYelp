@@ -20,6 +20,7 @@ namespace BetterYelp.Controllers
         public SearchController(SearchService searchService)
         {
             _searchService = searchService;
+            _yelpClient = new YelpClient(new ());
         }
 
         // GET: Search

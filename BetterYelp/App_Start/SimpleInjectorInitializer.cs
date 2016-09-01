@@ -1,8 +1,13 @@
-﻿using SimpleInjector;
+﻿using BetterYelp.Common;
+using BetterYelp.Models;
+using BetterYelp.Models.Repositories;
+using BetterYelp.Models.UnitOfWork;
+using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -30,8 +35,12 @@ namespace BetterYelp.App_Start
 
         private static void InitializeContainer(Container container)
         {
-            
-            //container.Register<I>
+            // container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
+            container.Register<ILogger, Logger>();
+            container.Register<IUnitOfWork, UnitOfWork>();
+            container.Register<DbContext, SearchContext>();
+            container.Register<ISearchRepository, SearchRepository>();
+            container.Register<IServiceConnectionsRepository, ServiceConnectionsRepository>();
         }
     }
 }
