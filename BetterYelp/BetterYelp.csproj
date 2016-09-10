@@ -279,6 +279,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Security\OAuthManager.cs" />
+    <Compile Include="ServiceConnectors\IYelpClient.cs" />
     <Compile Include="ServiceConnectors\YelpClient.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Startup.cs" />
