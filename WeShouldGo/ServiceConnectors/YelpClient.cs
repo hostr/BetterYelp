@@ -15,7 +15,6 @@ namespace WeShouldGo.ServiceConnectors
     public class YelpClient
     {
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly IApiRequest _api;
         private YelpSettings _settings;
 
         private const double TokenRefreshDurationInMinutes = 30;
@@ -24,9 +23,6 @@ namespace WeShouldGo.ServiceConnectors
 
         private const string authEndpoint = "/oauth2/token";
         private const string businessSearchEndpiont = "/v3/businesses/search";
-
-        private string token;
-        private DateTime lastRefreshed;
 
         public YelpClient(IUnitOfWork unitOfWork)
         {

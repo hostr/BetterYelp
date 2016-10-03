@@ -20,7 +20,6 @@ namespace WeShouldGo.Controllers
         public SearchController(SearchService searchService)
         {
             _searchService = searchService;
-            _yelpClient = new YelpClient();
         }
 
         // GET: Search
@@ -38,10 +37,7 @@ namespace WeShouldGo.Controllers
                 return View(vm);
             }
 
-            _yelpClient.GetToken();
-            var results = _yelpClient.SearchBusinesses(vm.Term, vm.Location);
-
-            return Json(results);
+            return Json(null);
         }
 
     }
