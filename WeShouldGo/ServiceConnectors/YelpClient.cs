@@ -32,10 +32,12 @@ namespace WeShouldGo.ServiceConnectors
 
         private void InitializeSettings()
         {
-            _settings = new YelpSettings();
+            _settings = new YelpSettings
+            {
+                AppId = Properties.Settings.Default.AppID,
+                AppSecret = Properties.Settings.Default.AppSecret
+            };
 
-            _settings.AppId = Properties.Settings.Default.AppID;
-            _settings.AppSecret = Properties.Settings.Default.AppSecret;
         }
 
         public string GetToken()
