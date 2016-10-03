@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 
@@ -34,8 +35,8 @@ namespace WeShouldGo.ServiceConnectors
         {
             _settings = new YelpSettings
             {
-                AppId = Properties.Settings.Default.AppID,
-                AppSecret = Properties.Settings.Default.AppSecret
+                AppId = ConfigurationManager.AppSettings["YelpAppId"],
+                AppSecret = ConfigurationManager.AppSettings["YelpAppSecret"]
             };
 
         }
@@ -72,7 +73,7 @@ namespace WeShouldGo.ServiceConnectors
 
         private string AttemptRefreshToken()
         {
-            var restClient = new RestClient(baseUrl + AuthEndpoint);
+            var restClient = new RestClient(BaseUrl + AuthEndpoint);
 
             RestRequest request = new RestRequest()
             {
@@ -101,7 +102,7 @@ namespace WeShouldGo.ServiceConnectors
 
         public BusinessesSearchResponse SearchBusinesses(string term, string location)
         {
-            var restClient = new RestClient(baseUrl + BusinessSearchEndpiont);
+            var restClient = new RestClient(BaseUrl + BusinessSearchEndpoint);
 
             RestRequest request = new RestRequest()
             {
