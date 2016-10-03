@@ -19,10 +19,10 @@ namespace WeShouldGo.ServiceConnectors
 
         private const double TokenRefreshDurationInMinutes = 30;
 
-        private const string baseUrl = "https://api.yelp.com";
+        private const string BaseUrl = "https://api.yelp.com";
 
-        private const string authEndpoint = "/oauth2/token";
-        private const string businessSearchEndpiont = "/v3/businesses/search";
+        private const string AuthEndpoint = "/oauth2/token";
+        private const string BusinessSearchEndpoint = "/v3/businesses/search";
 
         public YelpClient(IUnitOfWork unitOfWork)
         {
@@ -44,12 +44,12 @@ namespace WeShouldGo.ServiceConnectors
         {
             if (String.IsNullOrEmpty(_settings.AppId))
             {
-                throw new ArgumentException("Yelp App Id");
+                throw new ArgumentException("AppId");
             }
 
             if (String.IsNullOrEmpty(_settings.AppSecret))
             {
-                throw new ArgumentException("Yelp App Secret");
+                throw new ArgumentException("AppSecret");
             }
 
             var entity = _unitOfWork.ServiceConnections.Find(m => m.ServiceName == "Yelp").FirstOrDefault();
@@ -72,7 +72,7 @@ namespace WeShouldGo.ServiceConnectors
 
         private string AttemptRefreshToken()
         {
-            var restClient = new RestClient(baseUrl + authEndpoint);
+            var restClient = new RestClient(baseUrl + AuthEndpoint);
 
             RestRequest request = new RestRequest()
             {
@@ -101,7 +101,7 @@ namespace WeShouldGo.ServiceConnectors
 
         public BusinessesSearchResponse SearchBusinesses(string term, string location)
         {
-            var restClient = new RestClient(baseUrl + businessSearchEndpiont);
+            var restClient = new RestClient(baseUrl + BusinessSearchEndpiont);
 
             RestRequest request = new RestRequest()
             {
