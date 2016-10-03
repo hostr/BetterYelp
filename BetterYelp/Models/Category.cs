@@ -1,4 +1,4 @@
-﻿namespace BetterYelp.Models
+﻿namespace WeShouldGo.Models
 {
     public class Category
     {

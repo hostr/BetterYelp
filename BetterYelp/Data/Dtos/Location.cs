@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BetterYelp.Data.Dtos
+namespace WeShouldGo.Data.Dtos
 {
     public class Location
     {

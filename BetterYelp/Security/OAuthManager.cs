@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 
-namespace BetterYelp.Security
+namespace WeShouldGo.Security
 {
     /// <summary>
     ///   A class to manage OAuth interactions.  This works with

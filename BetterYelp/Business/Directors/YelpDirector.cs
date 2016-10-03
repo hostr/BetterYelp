@@ -1,4 +1,4 @@
-using BetterYelp.Data;
+using WeShouldGo.Data;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace BetterYelp.Business.Directors
+namespace WeShouldGo.Business.Directors
 {
     public class YelpDirector
     {

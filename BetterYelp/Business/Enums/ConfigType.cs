@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Business.Enums
+namespace WeShouldGo.Business.Enums
 {
     public enum ConfigType
     {

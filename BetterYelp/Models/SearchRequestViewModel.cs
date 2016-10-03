@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BetterYelp.Models
+namespace WeShouldGo.Models
 {
     public class SearchRequestViewModel
     {

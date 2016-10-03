@@ -1,4 +1,4 @@
-namespace BetterYelp.Migrations
+namespace WeShouldGo.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

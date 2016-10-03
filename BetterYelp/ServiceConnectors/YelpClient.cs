@@ -1,8 +1,8 @@
-﻿using BetterYelp.Business.Directors;
-using BetterYelp.Data;
-using BetterYelp.Data.Dtos;
-using BetterYelp.Models.Entities;
-using BetterYelp.Models.UnitOfWork;
+﻿using WeShouldGo.Business.Directors;
+using WeShouldGo.Data;
+using WeShouldGo.Data.Dtos;
+using WeShouldGo.Models.Entities;
+using WeShouldGo.Models.UnitOfWork;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BetterYelp.ServiceConnectors
+namespace WeShouldGo.ServiceConnectors
 {
     public class YelpClient
     {

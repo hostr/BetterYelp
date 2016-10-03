@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using BetterYelp.Models;
+using WeShouldGo.Models;
 
-namespace BetterYelp
+namespace WeShouldGo
 {
     public class EmailService : IIdentityMessageService
     {

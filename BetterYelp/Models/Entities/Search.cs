@@ -1,11 +1,11 @@
-﻿using BetterYelp.Models.ViewModels;
+﻿using WeShouldGo.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Models.Entities
+namespace WeShouldGo.Models.Entities
 {
     public class Search
     {

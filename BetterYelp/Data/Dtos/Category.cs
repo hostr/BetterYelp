@@ -1,4 +1,4 @@
-﻿namespace BetterYelp.Data.Dtos
+﻿namespace WeShouldGo.Data.Dtos
 {
     public class Category
     {

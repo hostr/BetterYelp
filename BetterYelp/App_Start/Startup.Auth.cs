@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using BetterYelp.Models;
+using WeShouldGo.Models;
 
-namespace BetterYelp
+namespace WeShouldGo
 {
     public partial class Startup
     {

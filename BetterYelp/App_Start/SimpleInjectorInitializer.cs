@@ -1,7 +1,7 @@
-﻿using BetterYelp.Common;
-using BetterYelp.Models;
-using BetterYelp.Models.Repositories;
-using BetterYelp.Models.UnitOfWork;
+﻿using WeShouldGo.Common;
+using WeShouldGo.Models;
+using WeShouldGo.Models.Repositories;
+using WeShouldGo.Models.UnitOfWork;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace BetterYelp.App_Start
+namespace WeShouldGo.App_Start
 {
     public class SimpleInjectorInitializer
     {

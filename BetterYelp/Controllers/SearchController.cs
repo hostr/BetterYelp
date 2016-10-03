@@ -1,16 +1,16 @@
-﻿using BetterYelp.Business.Directors;
-using BetterYelp.Models;
-using BetterYelp.Models.Repositories;
-using BetterYelp.Models.UnitOfWork;
-using BetterYelp.ServiceConnectors;
-using BetterYelp.Services;
+﻿using WeShouldGo.Business.Directors;
+using WeShouldGo.Models;
+using WeShouldGo.Models.Repositories;
+using WeShouldGo.Models.UnitOfWork;
+using WeShouldGo.ServiceConnectors;
+using WeShouldGo.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BetterYelp.Controllers
+namespace WeShouldGo.Controllers
 {
     public class SearchController : Controller
     {

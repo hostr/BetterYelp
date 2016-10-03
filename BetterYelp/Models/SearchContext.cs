@@ -1,4 +1,4 @@
-﻿using BetterYelp.Models.Entities;
+﻿using WeShouldGo.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Models
+namespace WeShouldGo.Models
 {
     public class SearchContext : DbContext
     {

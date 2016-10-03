@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace BetterYelp.Models
+namespace WeShouldGo.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

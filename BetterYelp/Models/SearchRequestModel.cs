@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Models
+namespace WeShouldGo.Models
 {
     /// <summary>
     /// Used to search the Yelp API, for more info see web docs

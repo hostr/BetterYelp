@@ -1,12 +1,12 @@
-﻿using BetterYelp.Models.Entities;
-using BetterYelp.Models.Repositories;
+﻿using WeShouldGo.Models.Entities;
+using WeShouldGo.Models.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Models.Repositories
+namespace WeShouldGo.Models.Repositories
 {
     public interface ISearchRepository : IRepository<Search>
     {

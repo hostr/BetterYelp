@@ -1,4 +1,4 @@
-﻿using BetterYelp.Models.Entities;
+﻿using WeShouldGo.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Models.Repositories
+namespace WeShouldGo.Models.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {

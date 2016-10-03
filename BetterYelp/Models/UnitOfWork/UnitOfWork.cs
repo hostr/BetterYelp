@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BetterYelp.Models.Repositories;
+using WeShouldGo.Models.Repositories;
 using System.Data.Entity;
 
-namespace BetterYelp.Models.UnitOfWork
+namespace WeShouldGo.Models.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Models.ViewModels
+namespace WeShouldGo.Models.ViewModels
 {
     public class SearchViewModel
     {

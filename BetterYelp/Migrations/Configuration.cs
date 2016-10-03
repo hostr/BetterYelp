@@ -1,4 +1,4 @@
-namespace BetterYelp.Migrations
+namespace WeShouldGo.Migrations
 {
     using Models;
     using Models.Entities;
@@ -8,14 +8,14 @@ namespace BetterYelp.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<BetterYelp.Models.SearchContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<WeShouldGo.Models.SearchContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(BetterYelp.Models.SearchContext context)
+        protected override void Seed(WeShouldGo.Models.SearchContext context)
         {
             var searches = new List<Search>
             {

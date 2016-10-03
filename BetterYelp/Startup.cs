@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(BetterYelp.Startup))]
-namespace BetterYelp
+[assembly: OwinStartupAttribute(typeof(WeShouldGo.Startup))]
+namespace WeShouldGo
 {
     public partial class Startup
     {

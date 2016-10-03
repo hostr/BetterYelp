@@ -1,9 +1,9 @@
-﻿using BetterYelp.Data;
-using BetterYelp.Models;
-using BetterYelp.Models.Entities;
-using BetterYelp.Models.UnitOfWork;
-using BetterYelp.Models.ViewModels;
-using BetterYelp.ServiceConnectors;
+﻿using WeShouldGo.Data;
+using WeShouldGo.Models;
+using WeShouldGo.Models.Entities;
+using WeShouldGo.Models.UnitOfWork;
+using WeShouldGo.Models.ViewModels;
+using WeShouldGo.ServiceConnectors;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Services
+namespace WeShouldGo.Services
 {
     public class SearchService
     {

@@ -1,9 +1,9 @@
-﻿using BetterYelp.Business.Directors;
-using BetterYelp.Business.Enums;
-using BetterYelp.Data;
-using BetterYelp.Models.UnitOfWork;
-using BetterYelp.Security;
-using BetterYelp.ServiceConnectors;
+﻿using WeShouldGo.Business.Directors;
+using WeShouldGo.Business.Enums;
+using WeShouldGo.Data;
+using WeShouldGo.Models.UnitOfWork;
+using WeShouldGo.Security;
+using WeShouldGo.ServiceConnectors;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,7 +11,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BetterYelp.Controllers
+namespace WeShouldGo.Controllers
 {
     public class HomeController : Controller
     {

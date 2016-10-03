@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BetterYelp.Common
+namespace WeShouldGo.Common
 {
     public interface ILogger
     {
