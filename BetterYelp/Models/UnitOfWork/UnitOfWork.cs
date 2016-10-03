@@ -11,11 +11,13 @@ namespace BetterYelp.Models.UnitOfWork
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly DbContext _context;
-
+        
         public ISearchRepository Searches { get; private set; }
         public IServiceConnectionsRepository ServiceConnections { get; private set; }
 
-        public UnitOfWork(DbContext context, ISearchRepository searchRepository, IServiceConnectionsRepository serviceConnectionsRepository)
+        public UnitOfWork(DbContext context, 
+            ISearchRepository searchRepository, 
+            IServiceConnectionsRepository serviceConnectionsRepository)
         {
             _context = context;
             Searches = searchRepository;
@@ -25,7 +27,7 @@ namespace BetterYelp.Models.UnitOfWork
         public int Save()
         {
             return _context.SaveChanges();
-        }
+        } 
 
         private bool disposed = false;
 
