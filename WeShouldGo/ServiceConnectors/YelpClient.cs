@@ -18,7 +18,7 @@ namespace WeShouldGo.ServiceConnectors
         private readonly IUnitOfWork _unitOfWork;
         private YelpSettings _settings;
 
-        private const double TokenRefreshDurationInMinutes = 30;
+        private const double TokenTimeToLiveInMinutes = 30;
 
         private const string BaseUrl = "https://api.yelp.com";
 
@@ -39,39 +39,34 @@ namespace WeShouldGo.ServiceConnectors
                 AppSecret = ConfigurationManager.AppSettings["YelpAppSecret"]
             };
 
+            GetToken();
         }
 
         public string GetToken()
         {
-            if (String.IsNullOrEmpty(_settings.AppId))
-            {
-                throw new ArgumentException("AppId");
-            }
+            if (string.IsNullOrEmpty(_settings.AppId)) { throw new ArgumentException(nameof(_settings.AppId)); }
+            if (string.IsNullOrEmpty(_settings.AppSecret)) { throw new ArgumentException(nameof(_settings.AppId)); }
 
-            if (String.IsNullOrEmpty(_settings.AppSecret))
-            {
-                throw new ArgumentException("AppSecret");
-            }
+            var yelpEntity = _unitOfWork.ServiceConnections.Find(m => m.ServiceName == "Yelp").FirstOrDefault();
+            if (yelpEntity == null) throw new ArgumentNullException(nameof(yelpEntity));
 
-            var entity = _unitOfWork.ServiceConnections.Find(m => m.ServiceName == "Yelp").FirstOrDefault();
-
-            var elapsedTime = new TimeSpan(DateTime.Now.Ticks - entity.LastUpdated.Ticks);
+            var elapsedTime = new TimeSpan(DateTime.Now.Ticks - yelpEntity.LastUpdated.Ticks);
             double deltaInMinutes = Math.Abs(elapsedTime.TotalMinutes);
 
-            if (deltaInMinutes < TokenRefreshDurationInMinutes 
-                && !String.IsNullOrWhiteSpace(entity.Token))
+            if (deltaInMinutes < TokenTimeToLiveInMinutes
+                && !string.IsNullOrWhiteSpace(yelpEntity.Token))
             {
-                return entity.Token; 
+                return yelpEntity.Token;
             }
             else
             {
-                entity.Token = AttemptRefreshToken();
-                entity.LastUpdated = DateTime.Now;
-                return entity.Token;
-            }                      
+                yelpEntity.Token = RefreshToken();
+                yelpEntity.LastUpdated = DateTime.Now;
+                return yelpEntity.Token;
+            }
         }
 
-        private string AttemptRefreshToken()
+        private string RefreshToken()
         {
             var restClient = new RestClient(BaseUrl + AuthEndpoint);
 
@@ -90,8 +85,8 @@ namespace WeShouldGo.ServiceConnectors
             var response = restClient.Execute(request);
             var responseJson = response.Content;
 
-            var token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseJson)["access_token"].ToString();     
-            
+            var token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseJson)["access_token"].ToString();
+
             if (token == null || string.IsNullOrWhiteSpace(token))
             {
                 throw new Exception("yelp token");
