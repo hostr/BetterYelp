@@ -1,7 +1,5 @@
 ﻿using WeShouldGo.Common;
 using WeShouldGo.Models;
-using WeShouldGo.Models.Repositories;
-using WeShouldGo.Models.UnitOfWork;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
@@ -37,10 +35,7 @@ namespace WeShouldGo.App_Start
         {
             // container.Register<IUserRepository, SqlUserRepository>(Lifestyle.Scoped);
             container.Register<ILogger, Logger>();
-            container.Register<IUnitOfWork, UnitOfWork>();
             container.Register<DbContext, SearchContext>();
-            container.Register<ISearchRepository, SearchRepository>();
-            container.Register<IServiceConnectionsRepository, ServiceConnectionsRepository>();
         }
     }
 }

@@ -2,32 +2,32 @@
 using WeShouldGo.Data;
 using WeShouldGo.Data.Dtos;
 using WeShouldGo.Models.Entities;
-using WeShouldGo.Models.UnitOfWork;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using WeShouldGo.Models;
 
 namespace WeShouldGo.ServiceConnectors
 {
     public class YelpClient
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly SearchContext _context;
         private YelpSettings _settings;
 
         private const double TokenTimeToLiveInMinutes = 30;
 
         private const string BaseUrl = "https://api.yelp.com";
 
-        private const string AuthEndpoint = "/oauth2/token";
+        private const string AuthEndpoint = "/o auth2/token";
         private const string BusinessSearchEndpoint = "/v3/businesses/search";
 
-        public YelpClient(IUnitOfWork unitOfWork)
+        public YelpClient(SearchContext context)
         {
-            _unitOfWork = unitOfWork;
             InitializeSettings();
         }
 
@@ -47,7 +47,7 @@ namespace WeShouldGo.ServiceConnectors
             if (string.IsNullOrEmpty(_settings.AppId)) { throw new ArgumentException(nameof(_settings.AppId)); }
             if (string.IsNullOrEmpty(_settings.AppSecret)) { throw new ArgumentException(nameof(_settings.AppId)); }
 
-            var yelpEntity = _unitOfWork.ServiceConnections.Find(m => m.ServiceName == "Yelp").FirstOrDefault();
+            var yelpEntity = _context.ServiceConnections.FirstOrDefault(m => m.ServiceName == "Yelp");
             if (yelpEntity == null) throw new ArgumentNullException(nameof(yelpEntity));
 
             var elapsedTime = new TimeSpan(DateTime.Now.Ticks - yelpEntity.LastUpdated.Ticks);

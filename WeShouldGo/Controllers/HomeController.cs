@@ -1,7 +1,6 @@
 ﻿using WeShouldGo.Business.Directors;
 using WeShouldGo.Business.Enums;
 using WeShouldGo.Data;
-using WeShouldGo.Models.UnitOfWork;
 using WeShouldGo.Security;
 using WeShouldGo.ServiceConnectors;
 using System;

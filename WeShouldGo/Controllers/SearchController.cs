@@ -1,7 +1,5 @@
 ﻿using WeShouldGo.Business.Directors;
 using WeShouldGo.Models;
-using WeShouldGo.Models.Repositories;
-using WeShouldGo.Models.UnitOfWork;
 using WeShouldGo.ServiceConnectors;
 using WeShouldGo.Services;
 using System;
