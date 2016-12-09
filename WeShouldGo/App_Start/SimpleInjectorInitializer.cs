@@ -26,8 +26,6 @@ namespace WeShouldGo.App_Start
 
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
 
-            container.Verify();
-
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
         }
 

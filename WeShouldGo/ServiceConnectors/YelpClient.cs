@@ -7,6 +7,7 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -17,38 +18,41 @@ namespace WeShouldGo.ServiceConnectors
     public class YelpClient
     {
         private readonly SearchContext _context;
-        private YelpSettings _settings;
+        private readonly YelpSettings _settings;
 
         private const double TokenTimeToLiveInMinutes = 30;
 
         private const string BaseUrl = "https://api.yelp.com";
 
-        private const string AuthEndpoint = "/o auth2/token";
+        private const string AuthEndpoint = "/oauth2/token";
         private const string BusinessSearchEndpoint = "/v3/businesses/search";
 
         public YelpClient(SearchContext context)
         {
-            InitializeSettings();
-        }
-
-        private void InitializeSettings()
-        {
+            _context = context;
             _settings = new YelpSettings
             {
                 AppId = ConfigurationManager.AppSettings["YelpAppId"],
                 AppSecret = ConfigurationManager.AppSettings["YelpAppSecret"]
             };
-
-            GetToken();
         }
 
         public string GetToken()
         {
-            if (string.IsNullOrEmpty(_settings.AppId)) { throw new ArgumentException(nameof(_settings.AppId)); }
-            if (string.IsNullOrEmpty(_settings.AppSecret)) { throw new ArgumentException(nameof(_settings.AppId)); }
-
             var yelpEntity = _context.ServiceConnections.FirstOrDefault(m => m.ServiceName == "Yelp");
-            if (yelpEntity == null) throw new ArgumentNullException(nameof(yelpEntity));
+
+            // If no yelp connection exists in the db, then seed one here
+            if (yelpEntity == null)
+            {
+                _context.ServiceConnections.Add(new ServiceConnections
+                {
+                    LastUpdated = DateTime.Now,
+                    ServiceName = "Yelp",
+                    Token = RefreshToken()
+                });
+
+                _context.SaveChanges();
+            }
 
             var elapsedTime = new TimeSpan(DateTime.Now.Ticks - yelpEntity.LastUpdated.Ticks);
             double deltaInMinutes = Math.Abs(elapsedTime.TotalMinutes);
@@ -62,6 +66,7 @@ namespace WeShouldGo.ServiceConnectors
             {
                 yelpEntity.Token = RefreshToken();
                 yelpEntity.LastUpdated = DateTime.Now;
+
                 return yelpEntity.Token;
             }
         }
@@ -87,9 +92,9 @@ namespace WeShouldGo.ServiceConnectors
 
             var token = JsonConvert.DeserializeObject<Dictionary<string, object>>(responseJson)["access_token"].ToString();
 
-            if (token == null || string.IsNullOrWhiteSpace(token))
+            if (string.IsNullOrWhiteSpace(token))
             {
-                throw new Exception("yelp token");
+                throw new Exception("No Yelp token received");
             }
 
             return token;
@@ -104,12 +109,17 @@ namespace WeShouldGo.ServiceConnectors
                 Method = Method.GET
             };
 
-            request.AddHeader("Authorization", "Bearer " + token);
+            request.AddHeader("Authorization", "Bearer " + GetToken());
 
             request.AddParameter("term", term);
             request.AddParameter("location", location);
 
-            return null;
+            var response = restClient.Execute(request);
+            var responseJson = response.Content;
+
+            var results = JsonConvert.DeserializeObject<BusinessesSearchResponse>(responseJson);
+
+            return results;
         }
     }
 }

@@ -18,6 +18,7 @@ namespace WeShouldGo.Controllers
         public SearchController(SearchService searchService)
         {
             _searchService = searchService;
+            _yelpClient = new YelpClient(new SearchContext());
         }
 
         // GET: Search
@@ -35,7 +36,9 @@ namespace WeShouldGo.Controllers
                 return View(vm);
             }
 
-            return Json(null);
+            var results = _yelpClient.SearchBusinesses(vm.Term, vm.Location);
+
+            return View(results);
         }
 
     }

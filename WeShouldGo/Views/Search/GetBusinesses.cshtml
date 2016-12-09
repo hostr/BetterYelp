@@ -1,0 +1,30 @@
+﻿@model WeShouldGo.Data.Dtos.BusinessesSearchResponse
+
+<style>
+    .business-image {
+        width: 25%;
+        height: 25%;
+        transition: .5s ease all;
+    }
+    .business-image:hover {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+
+@{
+    var counter = 1;
+foreach (var business in Model.businesses)
+{
+    <div>
+        <h2>@counter<span>.</span> @business.name</h2>
+        <div>
+            <p>Location: @business.location.city, @business.location.state</p>
+            <p style="color: red; font-size: 16px">@business.price</p>
+            <p>@business.rating</p>
+            <img class="business-image" src="@business.image_url" alt="@business.name" />
+        </div>
+    </div>
+    counter++;
+}
+}

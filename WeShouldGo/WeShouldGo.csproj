@@ -292,6 +292,7 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="keys.config" />
     <Content Include="keys.sample.config" />
+    <Content Include="Views\Search\GetBusinesses.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
